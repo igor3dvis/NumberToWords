@@ -8,33 +8,29 @@ var arr_Edinizy = ['один', 'два', 'три', 'четыре', 'пять', '
 var arr_Nadzat = ['одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
 var arr_Desiatki = ['десять', 'двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто'];
 var arr_Sotni = ['сто', 'двести', 'триста', 'четиреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'];
-var arr_Tsch = ['тысяча', 'тысячи', 'тысяч'];
+var arr_Tysiachi = ['тысяча', 'тысячи', 'тысяч'];
 var arr_Mlny = ['миллион', 'миллиона', 'миллионов'];
 var razryad;
 
 // = = = Функция определяющая Единицы = = =
-function fn_Edinizy(v)  // Получаем на вход функции однозначное число
-{
+function fn_Edinizy(v) { // Получаем на вход функции однозначное число
 	var i = 0;  // Сбрасываем счетчик цикла
 
-	while (v > 1)  // Если число больше 1
-	{
-		v = v - 1;	// Уменьшаем его на 1
+	while (v > 1) { // Если число больше 1
+			v = v - 1;	// Уменьшаем его на 1
 		i++;		// Счетчик увеличиваем на 1
 	}
 
 	if ((razryad == 1 && i == 0) || (razryad == 1 && i == 1))
 		i = i + 9;  // нужны числительные со склонением, они в конце массива
 
-	var s = document.getElementById("numstr").innerHTML = arr_Edinizy[i];
+	var strNumber = document.getElementById("numstr").innerHTML = arr_Edinizy[i];
 	razryad = 0; //  обнуляем глобальную переменную, определяющую необходимость склонения
-
-	return s;  // Возвращаем элемент массива Единиц
+	return strNumber;  // Возвращаем элемент массива Единиц
 }
 
 // = = =  Функция определяющая ... надцать ( 11 ... 19 ) = = =
-function fn_Nadzat(v) // Получаем на вход функции двузначное число ...надцать
-{
+function fn_Nadzat(v) {// Получаем на вход функции двузначное число ...надцать
 	var i = 0; // Сбрасываем счетчик цикла
 
 	while (v > 11) { // Пока число больше 11-ти
@@ -42,18 +38,16 @@ function fn_Nadzat(v) // Получаем на вход функции двуз�
 		i++;         // Счетчик увеличиваем на 1
 	}
 	// Выводим элемент массива ... надцатых чисел ( 11 ... 19 )
-	var s = document.getElementById("numstr").innerHTML = arr_Nadzat[i];  
-	return s;  // Возвращаем элемент массива Надцать
+	var strNumber = document.getElementById("numstr").innerHTML = arr_Nadzat[i];  
+	return strNumber;  // Возвращаем элемент массива Надцать
 }
 
 
 // = = = Функция определяющая Десятки = = =
-function fn_Desiatki(v) // Получаем на вход функции двузначное число
-{
+function fn_Desiatki(v) {// Получаем на вход функции двузначное число
 	var i = 0; // Сбрасываем счетчик цикла
 
-	while (v > 10) // Пока число больше 10
-	{
+	while (v > 10) {// Пока число больше 10
 		v = v - 10; // Уменьшаем его на 10
 		i++; 		// Счетчик увеличиваем на 1
 		if (v < 10 && v > 0)
@@ -63,25 +57,23 @@ function fn_Desiatki(v) // Получаем на вход функции дву�
 
 	if (v == 10) { // Если Число кратно 10-ти
 		// Выводим элемент массива Десятков
-		var s2 = document.getElementById("numstr").innerHTML = arr_Desiatki[i];   
-		return s2;
+		var strNumber = document.getElementById("numstr").innerHTML = arr_Desiatki[i];   
+		return strNumber;
 	}
 	else {
 		// Выводим элемент массива Десятков и результат функции, вычисляющей Единицы
-		var s2 = document.getElementById("numstr").innerHTML = arr_Desiatki[i] + '  ' + fn_Edinizy(v);   
+		var strNumber = document.getElementById("numstr").innerHTML = arr_Desiatki[i] + '  ' + fn_Edinizy(v);   
 
-		return s2;
+		return strNumber;
 	}
 }
 
 // = = = Функция определяющая Сотни  = = =
-function fn_Sotni(v) // Получаем на вход функции трехзначное число
-{
-	var s3;
+function fn_Sotni(v) {// Получаем на вход функции трехзначное число
+	var strNumber;
 	var i = 0;                // Сбрасываем счетчик цикла
 
-	while (v > 100)           // Пока число больше 100
-	{
+	while (v > 100) {           // Пока число больше 100
 		v = v - 100;          // Уменьшаем его на 100
 		i++; 			      // Счетчик увеличиваем на 1
 		if (v < 100 && v > 0)
@@ -91,23 +83,23 @@ function fn_Sotni(v) // Получаем на вход функции трехз
 
 	if (v == 100) {	 // Если Число - ровная сотня
 		// Выводим элемент массива Сотен
-		s3 = document.getElementById("numstr").innerHTML = arr_Sotni[i];                         
-		return s3;
+		strNumber = document.getElementById("numstr").innerHTML = arr_Sotni[i];                         
+		return strNumber;
 	}
 	else if (v > 0 && v < 10) {  // Если Число ( 101 ... 109 )
 		// Выводим элемент массива Сотен и Единиц
-		s3 = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Edinizy(v);  
-		return s3;
+		strNumber = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Edinizy(v);  
+		return strNumber;
 	}
 	else if (v > 10 && v < 20) { // Если Число ( 111 ... 119 )
 		// Выводим элемент массива Сотен и Надцать
-		s3 = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Nadzat(v);   
-		return s3;
+		strNumber = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Nadzat(v);   
+		return strNumber;
 	}
 	else
 	// Выводим элемент массива Сотен и результат функции, вычисляющей Десятки
-		s3 = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Desiatki(v);   
-	return s3;
+		strNumber = document.getElementById("numstr").innerHTML = arr_Sotni[i] + '  ' + fn_Desiatki(v);   
+	return strNumber;
 }
 
 // = = =  Функция Склонение " Миллион / Мииллиона / Миллионов" = = =
@@ -135,7 +127,7 @@ function fn_mlny(f) {
 }
 
 // = = =  Функция Склонение " Тысяча /  Тысячи / Тысяч " = = =
-function fn_tsch(f) {
+function fn_tysiachi(f) {
 	if (f > 10 && f < 20) {
 		razryad = 0; return 2;
 	}
@@ -159,9 +151,9 @@ function fn_tsch(f) {
 }
 
 // = = = = = = = = = = = = = = = = = =  Т Е Л О   П Р О Г Р А М М Ы  = = = = = = = = = = = = = = = = = = = = = = = = = = =
-function fn_Chislo(v) {
+function fn_getRazriadOfNumber(v) { // Проверка количества знаков в числе
 	var s;
-	// Проверка количества знаков в числе
+	
 	if (v > 0 && v < 10) {      // Если однозначное
 		s = fn_Edinizy(v); 		// Выводим результат функции, вычисляющей Единицы
 		return s;
@@ -181,16 +173,16 @@ function fn_Chislo(v) {
 }
 
 function proverka(v) {
-	var r, vtys, vtys_str, vedn, vedn_str, fm, ft, ftstr, fmstr, skl_tys, skl_mlny, vm_str, vm;
+	var r, vtys, vtys_str, vedn, vedn_str, fm, ft, ftstr, fmstr, sklonenie_tys, sklonenie_mlny, vm_str, vm;
 	razryad = 0;
 
 	if (v > 0 && v < 1000)  // Если число трехзначное, определяем его и выводим
-		fn_Chislo(v);
+		fn_getRazriadOfNumber(v);
 	else if (v > 999 && v < 1000000) { //  Если число от 1 000  до  1 000 000,
 		r = v.length - 3; 			 //  находим количество старших разрядов, кроме трех младших
 		vtys_str = (v.slice(0, r));  //  получаем строковое значение Тысяч
 		vtys = parseInt(vtys_str);   //  получаем целое число - количество Тысяч
-		var output_vtys = fn_Chislo(vtys);
+		var output_vtys = fn_getRazriadOfNumber(vtys);
 		vedn = parseInt(v.substring(r, v.length)); //  получаем 3 младших разряда
 
 		if (r == 3) // Если количество Тысяч трехзначное
@@ -199,12 +191,12 @@ function proverka(v) {
 			ftstr = vtys_str;  // получаем два или один младших строковых разряда
 
 		ft = parseInt(ftstr);	//  преобразуем в число
-		skl_tys = fn_tsch(ft);  //  и на проверку склонения тысяч
+		sklonenie_tys = fn_tysiachi(ft);  //  и на проверку склонения тысяч
 
 		if (vedn == 0)
-			document.getElementById("numstr").innerHTML = output_vtys + ' ' + arr_Tsch[skl_tys];
+			document.getElementById("numstr").innerHTML = output_vtys + ' ' + arr_Tysiachi[sklonenie_tys];
 		else
-			document.getElementById("numstr").innerHTML = output_vtys + ' ' + arr_Tsch[skl_tys] + ' ' + fn_Chislo(vedn);
+			document.getElementById("numstr").innerHTML = output_vtys + ' ' + arr_Tysiachi[sklonenie_tys] + ' ' + fn_getRazriadOfNumber(vedn);
 	}
 
 	else if (v > 999999 && v < 1000000000) {  //  Если число от 1 000 000  до  1 000 000 000, 
@@ -217,10 +209,10 @@ function proverka(v) {
 			fmstr = vm_str; // получаем два или один младших строковых разряда
 
 		fm = parseInt(fmstr);  //  преобразуем в число
-		skl_mlny = fn_mlny(fm); //  на проверку склонения Миллионов
+		sklonenie_mlny = fn_mlny(fm); //  на проверку склонения Миллионов
 
 		vm = parseInt(vm_str); //  получаем целое число - количество Миллионов
-		var output_vm = fn_Chislo(vm);
+		var output_vm = fn_getRazriadOfNumber(vm);
 		vedn_str = (v.substring(r, v.length)); //  получаем 6 строковых младших разрядов
 
 		r = vedn_str.length - 3 //  находим количество старших разрядов, кроме трех младших
@@ -232,20 +224,20 @@ function proverka(v) {
 			ftstr = vtys_str; // получаем два или один младших строковых разряда
 
 		ft = parseInt(ftstr);	//  преобразуем в число
-		skl_tys = fn_tsch(ft);  //  и на проверку склонения тысяч
+		sklonenie_tys = fn_tysiachi(ft);  //  и на проверку склонения тысяч
 
 		vtys = parseInt(vtys_str);    //  получаем целое число - количество Тысяч
-		var output_vtys = fn_Chislo(vtys);
+		var output_vtys = fn_getRazriadOfNumber(vtys);
 		vedn = parseInt(vedn_str.substring(r, vedn_str.length));//  получаем 3 младших разряда
 
 		if (vtys == 0 && vedn == 0)
-			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[skl_mlny];
+			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[sklonenie_mlny];
 		else if (vtys == 0)
-			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[skl_mlny] + ' ' + fn_Chislo(vedn);
+			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[sklonenie_mlny] + ' ' + fn_getRazriadOfNumber(vedn);
 		else if (vedn == 0)
-			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[skl_mlny] + ' ' + output_vtys + ' ' + arr_Tsch[skl_tys];
+			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[sklonenie_mlny] + ' ' + output_vtys + ' ' + arr_Tysiachi[sklonenie_tys];
 		else
-			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[skl_mlny] + ' ' + output_vtys + ' ' + arr_Tsch[skl_tys] + ' ' + fn_Chislo(vedn);
+			document.getElementById("numstr").innerHTML = output_vm + ' ' + arr_Mlny[sklonenie_mlny] + ' ' + output_vtys + ' ' + arr_Tysiachi[sklonenie_tys] + ' ' + fn_getRazriadOfNumber(vedn);
 	}
 	else if (v > 999999999)
 		alert('Дальше миллиарды.....');
